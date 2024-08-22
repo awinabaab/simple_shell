@@ -20,14 +20,14 @@ char *getinput(void)
 	if (read == -1)
 	{
 		free(input);
-		if (feof(stdin))
+		if (isatty(STDIN_FILENO) && feof(stdin))
 		{
 			printf("\n");
 			exit(0);
 		}
 		else
 		{
-			perror("getline");
+			/*perror("getline");*/
 			exit(1);
 		}
 	}

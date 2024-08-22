@@ -22,7 +22,8 @@ int main(int ac, char **av, char **env)
 
 	while (1)
 	{
-		printf("simple_shell$ ");
+		if (isatty(STDIN_FILENO))
+			printf("($) ");
 
 		input = getinput();
 		if (input == NULL)
