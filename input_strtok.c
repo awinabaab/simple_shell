@@ -38,7 +38,7 @@ char **prepare_token_array(char *input, char *delim)
 	}
 
 	free(input_copy);
-	return argv;
+	return (argv);
 }
 
 
@@ -84,25 +84,24 @@ char **inptstr_tok(char *input, char *delim)
 }
 
 
-int main(void)
+/*char **inptstr_tok(char *input, char *delim)
 {
-	char **strarr;
-	char input[] = "We are getting this done in no time";
-	char *delim = " \t\n";
+	int size = 1;
+	char **tokens;
+	char *tok;
 	int i;
 
-	strarr = inptstr_tok(input, delim);
-
-	if (strarr != NULL)
+	tokens = malloc(sizeof(char *) * size);
+	tok = strtok(input, delim);
+	while (tok != NULL)
 	{
-		for (i = 0; strarr[i] != NULL; i++)
-		{
-			printf("%s\n", strarr[i]);
-			free(strarr[i]);
-		}
-		free(strarr);
+		i = size - 1;
+		size++;
+		tokens = realloc(tokens, size * sizeof(char *));
+		tokens[i] = malloc(strlen(tok) * sizeof(char));
+		strcpy(tokens[i], tok);
+		tok = strtok(NULL, delim);
 	}
-
-	return (0);
-}
-
+	tokens[size - 1] = NULL;
+	return (tokens);
+}*/
