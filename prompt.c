@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	int get;
 
 	(void)argc;
-	while(1)
+	while (1)
 	{
 		if (argv[1] && (strcmp(argv[1], "-i") == 0) &&
 				(strcmp(argv[1], "-c") != 0))

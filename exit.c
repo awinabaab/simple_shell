@@ -7,7 +7,7 @@
  *
  * @args: Array of string arguments, with index 2 an optional exit status
  *
- * return: The status
+ * Return: The status
  */
 int exit_shell(char **args)
 {
@@ -17,9 +17,9 @@ int exit_shell(char **args)
 	{
 		if (args[1] == NULL)
 			status = 0;
-                else
+		else
 			status = 1;
-        }
+	}
 
 	return (status);
 }

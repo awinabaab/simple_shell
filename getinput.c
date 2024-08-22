@@ -8,7 +8,7 @@
 /**
  * getinput - gets input from keyboard
  *
- * return: input string
+ * Return: input string
  */
 char *getinput(void)
 {

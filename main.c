@@ -9,14 +9,15 @@
  * @ac: argument count
  * @av: array of arguments
  * @env: array of environment argument string
- * return: 0
+ * Return: 0
  */
+
 int main(int ac, char **av, char **env)
 {
 	char **strarr = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n";
-	int pcount = 1; int exec_stat;
+	int pcount = 1, exec_stat;
 	(void)ac;
 
 	while (1)

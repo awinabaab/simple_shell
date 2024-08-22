@@ -1,6 +1,14 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+
 int _getline(char **lineptr, size_t *n, FILE *stream);
 char *getinput(void);
 char **inptstr_tok(char *input, const char *delim);

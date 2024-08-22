@@ -82,26 +82,3 @@ char **inptstr_tok(char *input, char *delim)
 	argv[i] = NULL;
 	return (argv);
 }
-
-
-/*char **inptstr_tok(char *input, char *delim)
-{
-	int size = 1;
-	char **tokens;
-	char *tok;
-	int i;
-
-	tokens = malloc(sizeof(char *) * size);
-	tok = strtok(input, delim);
-	while (tok != NULL)
-	{
-		i = size - 1;
-		size++;
-		tokens = realloc(tokens, size * sizeof(char *));
-		tokens[i] = malloc(strlen(tok) * sizeof(char));
-		strcpy(tokens[i], tok);
-		tok = strtok(NULL, delim);
-	}
-	tokens[size - 1] = NULL;
-	return (tokens);
-}*/
