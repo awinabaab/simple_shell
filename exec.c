@@ -17,6 +17,7 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	pid_t pid;
 	struct stat st;
 	int exit_stat = exit_shell(args), status;
+	char *cmd = find_cmd_in_path(argv);
 
 	if (args == NULL)
 		return (1);
@@ -31,7 +32,7 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 			return (1);
 		}
 	}
-	if (stat(argv, &st) == -1)
+	if (stat(cmd, &st) == -1)
 	{
 		printf("%s: %d: %s: not found\n", flname, pcount, argv);
 		return (1);
@@ -44,7 +45,7 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	}
 	if (pid == 0)
 	{
-		if (execve(argv, args, env) == -1)
+		if (execve(cmd, args, env) == -1)
 			return (1);
 	}
 	else if (wait(&status) == -1)
