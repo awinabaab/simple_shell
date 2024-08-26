@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * update_pwd - Updates the current working directory
  *
@@ -15,13 +14,11 @@ void update_pwd(const char *new_dir)
 		perror("setenv");
 }
 
-
-
 /**
  * get_old_pwd - Gets the previous working directory
  *
  * Return: The previous working directory
- */i
+ */
 
 const char *get_old_pwd(void)
 {
@@ -32,8 +29,6 @@ const char *get_old_pwd(void)
 
 	return (old_pwd);
 }
-
-
 
 /**
  * change_dir - Changes into a new directory as specified

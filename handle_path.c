@@ -1,6 +1,5 @@
 #include "main.h"
 
-
  /**
  * find_cmd_in_path - Checks for command in path environment varible
  *
