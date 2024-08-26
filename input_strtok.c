@@ -41,7 +41,7 @@ char **prepare_token_array(char *input, const char *delim)
 
 
 /**
- * inptstr_tok - tokenizes a string and puts it into an array
+ * inputstr_tok - tokenizes a string and puts it into an array
  *
  * @input: input string
  * @delim: delimiter string
