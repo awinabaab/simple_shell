@@ -1,14 +1,16 @@
 #include "main.h"
 
 
-	/**
-	* find_cmd_in_path - Checks for command in path environment varible
-	*
-	* @cmd: Command string
-	*
-	* return: The full path to command
-	* or returns null if path is not a valid executable
-	*/char *find_cmd_in_path(char *cmd)
+ /**
+ * find_cmd_in_path - Checks for command in path environment varible
+ *
+ * @cmd: Command string
+ *
+ * return: The full path to command
+ * or returns null if path is not a valid executable
+ */
+
+char *find_cmd_in_path(char *cmd)
 {
 	char *path, *path_copy, *dir;
 	static char full_path[1024];

@@ -27,10 +27,9 @@ int main(int ac, char **av, char **env)
 
 		input = getinput();
 		if (input == NULL)
-		{
-			free(input);
-		}
-		strarr = inptstr_tok(input, delim);
+			continue;
+
+		strarr = inputstr_tok(input, delim);
 		if (strarr == NULL)
 		{
 			free(input);
@@ -39,7 +38,7 @@ int main(int ac, char **av, char **env)
 		exec_stat = execution(strarr[0], strarr, env, av[0], pcount);
 		if (exec_stat == -1)
 		{
-			free(input);
+			free(strarr);
 			continue;
 		}
 
@@ -47,5 +46,7 @@ int main(int ac, char **av, char **env)
 		free(strarr);
 		pcount++;
 	}
+	free(input);
+	free(strarr);
 	return (0);
 }

@@ -19,8 +19,6 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	int exit_stat = exit_shell(args), status;
 	char *cmd = find_cmd_in_path(argv);
 
-	if (args == NULL)
-		return (1);
 	if (strcmp(args[0], "exit") == 0)
 	{
 		if (exit_stat == 0)
@@ -31,8 +29,11 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 					flname, pcount, argv, args[1]);
 			return (1);
 		}
-	}
-	if (stat(cmd, &st) == -1)
+	} else if (strcmp(argv, "cd") == 0)
+	{
+		change_dir(args[1]);
+		return (1);
+	} else if (stat(cmd, &st) == -1)
 	{
 		printf("%s: %d: %s: not found\n", flname, pcount, argv);
 		return (1);
@@ -42,13 +43,11 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	{
 		perror("fork");
 		return (1);
-	}
-	if (pid == 0)
+	} else if (pid == 0)
 	{
 		if (execve(cmd, args, env) == -1)
 			return (1);
-	}
-	else if (wait(&status) == -1)
+	} else if (wait(&status) == -1)
 	{
 		perror("wait");
 		return (1);

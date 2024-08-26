@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
 /**
  * prepare_token_array - counts tokens and allocates memory for the token array
@@ -9,7 +7,7 @@
  * @delim: delimiter string
  * Return: pointer to allocated token array or NULL on failure
  */
-char **prepare_token_array(char *input, char *delim)
+char **prepare_token_array(char *input, const char *delim)
 {
 	int count = 0;
 	char **argv;
@@ -49,7 +47,7 @@ char **prepare_token_array(char *input, char *delim)
  * @delim: delimiter string
  * Return: an array of strings (tokens)
  */
-char **inptstr_tok(char *input, char *delim)
+char **inputstr_tok(char *input, const char *delim)
 {
 	char **argv;
 	char *token;
