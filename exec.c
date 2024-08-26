@@ -21,8 +21,8 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 
 	if (strcmp(args[0], "exit") == 0)
 	{
-		if (exit_stat == 0)
-			exit(0);
+		if (exit_stat >= 0)
+			exit(exit_stat);
 		else
 		{
 			printf("%s: %d: %s: Illegal number: %s\n",
