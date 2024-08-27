@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <ctype.h>
 
 extern char **environ;
 int _getline(char **lineptr, size_t *n, FILE *stream);
@@ -19,5 +20,6 @@ int exit_shell(char **argv);
 char *_getenv(const char *name);
 char *find_cmd_in_path(char *cmd);
 void change_dir(const char *dir);
+char **split_cmds(char *input);
 
 #endif /* MAIN_H */

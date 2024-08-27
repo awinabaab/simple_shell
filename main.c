@@ -1,24 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "main.h"
 
 /**
  * main - Entry point for program execution
  *
- * @ac: argument count
- * @av: array of arguments
- * @env: array of environment argument string
  * Return: 0
  */
 
-int main(int ac, char **av, char **env)
+int main(void)
 {
-	char **strarr = NULL;
+	char **strarr = NULL, **strarrs = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n";
-	int pcount = 1, exec_stat;
-	(void)ac;
+	int pcount = 1, i;
 
 	while (1)
 	{
@@ -29,24 +22,27 @@ int main(int ac, char **av, char **env)
 		if (input == NULL)
 			continue;
 
-		strarr = inputstr_tok(input, delim);
-		if (strarr == NULL)
+		strarrs = split_cmds(input);
+		if (strarrs == NULL)
 		{
 			free(input);
 			continue;
 		}
-		exec_stat = execution(strarr[0], strarr, env, av[0], pcount);
-		if (exec_stat == -1)
+		i = 0;
+		while (strarrs[i] != NULL)
 		{
-			free(strarr);
-			continue;
+			strarr = inputstr_tok(strarrs[i++], delim);
+			if (strarr != NULL)
+			{
+				execution(strarr[0], strarr, environ, strarr[1], pcount);
+				free(strarr);
+			}
 		}
-
 		free(input);
-		free(strarr);
+		free(strarrs);
 		pcount++;
 	}
 	free(input);
-	free(strarr);
+	free(strarrs);
 	return (0);
 }
