@@ -3,15 +3,20 @@
 /**
  * main - Entry point for program execution
  *
+ * @ac: argument count
+ * @av: array of arguments
+ * @env: array of environment argument string
+ *
  * Return: 0
  */
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char **strarr = NULL, **strarrs = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n";
 	int pcount = 1, i;
+	(void)ac;
 
 	while (1)
 	{
@@ -34,7 +39,7 @@ int main(void)
 			strarr = inputstr_tok(strarrs[i++], delim);
 			if (strarr != NULL)
 			{
-				execution(strarr[0], strarr, environ, strarr[1], pcount);
+				execution(strarr[0], strarr, env, av[0], pcount);
 				free(strarr);
 			}
 		}
