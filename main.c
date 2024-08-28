@@ -2,14 +2,11 @@
 
 /**
  * main - Entry point for program execution
- *
  * @ac: argument count
  * @av: array of arguments
  * @env: array of environment argument string
- *
  * Return: 0
  */
-
 int main(int ac, char **av, char **env)
 {
 	char **strarr = NULL, **strarrs = NULL;
@@ -23,14 +20,8 @@ int main(int ac, char **av, char **env)
 		if (interactive_mode)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		input = getinput();
-		if (input == NULL)
-		{
-			if (!interactive_mode)
-				break;
-			continue;
-		}
 		if (_strlen(input) == 1 && input[0] == '\n')
-		   continue;	
+			continue;
 		strarrs = split_cmds(input);
 		if (strarrs == NULL)
 		{
