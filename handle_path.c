@@ -23,6 +23,8 @@ char *find_cmd_in_path(char *cmd)
 	dir = strtok(path_copy, ":");
 	while (dir != NULL)
 	{
+		if (cmd[0] == '/')
+			return (cmd);
 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, cmd);
 		if (access(full_path, X_OK) == 0)
 		{
