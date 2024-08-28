@@ -1,0 +1,97 @@
+#include "main.h"
+
+
+
+/**
+ * _isdigit - Checks through digits
+ *
+ * @c: An integer as parameter
+ *
+ * Return: 1 if it's a digit, else returns 0
+ */
+int _isdigit(int c)
+{
+	if (c >= 0 && c < 10)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+}
+
+
+
+/**
+ * _atoi - Converts a string to an integer
+ *
+ * @s: String pointer
+ *
+ * Return: Integer if string contains number or 0 if not
+ */
+int _atoi(char *s)
+{
+	int result = 0;
+	int sign = 1;
+	int digit_found = 0;
+
+	while (*s)
+	{
+		if (*s == '-')
+		{
+			sign *= -1;
+		}
+		else if (*s == '+')
+		{
+			continue;
+		}
+		else if (*s >= '0' && *s <= '9')
+		{
+			digit_found = 1;
+			if (result > (INT_MAX - (*s - '0')) / 10)
+			{
+				return ((sign == 1) ? INT_MAX : INT_MIN);
+			}
+			result = result * 10 + (*s - '0');
+		}
+		else if	(digit_found)
+		{
+			break;
+		}
+		s++;
+	}
+	return (result * sign);
+}
+
+
+/**
+ * _feof - Checks if the end-of-file flag is set for a given fd
+ *
+ * @stream: File descriptor to check EOF status
+ *
+ * Return: true if EOF indicator is set, false otherwise
+ */
+int _feof(MyFILE *stream)
+{
+	if (stream == NULL || stream->file == NULL)
+	{
+		return (-1);
+	}
+	return (stream->eof ? 1 : 0);
+}
+
+
+
+/**
+ * _putchar - writes the character c to stdout
+ *
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}

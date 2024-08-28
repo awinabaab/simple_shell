@@ -16,7 +16,7 @@ char *find_cmd_in_path(char *cmd)
 	if (path == NULL)
 		return (NULL);
 
-	path_copy = strdup(path);
+	path_copy = _strdup(path);
 	if (path_copy == NULL)
 		return (NULL);
 

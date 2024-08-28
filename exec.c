@@ -19,7 +19,7 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	int exit_stat = exit_shell(args), status;
 	char *cmd = find_cmd_in_path(argv);
 
-	if (strcmp(args[0], "exit") == 0)
+	if (_strcmp(args[0], "exit") == 0)
 	{
 		if (exit_stat >= 0)
 			exit(exit_stat);
@@ -29,7 +29,7 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 					flname, pcount, argv, args[1]);
 			return (1);
 		}
-	} else if (strcmp(argv, "cd") == 0)
+	} else if (_strcmp(argv, "cd") == 0)
 	{
 		change_dir(args[1]);
 		return (1);

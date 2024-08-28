@@ -14,19 +14,21 @@ int main(int ac, char **av, char **env)
 {
 	char **strarr = NULL, **strarrs = NULL;
 	char *input = NULL;
-	const char *delim = " \t\n";
-	int pcount = 1, i;
+	const char *delim = " \t\n", *prompt = "($) ";
+	int pcount = 1, i, interactive_mode = isatty(STDIN_FILENO);
 	(void)ac;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			printf("($) ");
-
+		if (interactive_mode)
+			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		input = getinput();
 		if (input == NULL)
+		{
+			if (!interactive_mode)
+				break;
 			continue;
-
+		}
 		strarrs = split_cmds(input);
 		if (strarrs == NULL)
 		{

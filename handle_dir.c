@@ -49,14 +49,14 @@ void change_dir(const char *dir)
 		return;
 	}
 
-	if (dir == NULL || strcmp(dir, "~") == 0)
+	if (dir == NULL || _strcmp(dir, "~") == 0)
 	{
 		dir = _getenv("HOME");
 		if (dir == NULL)
 			return;
 	}
 
-	if (strcmp(dir, "-") == 0)
+	if (_strcmp(dir, "-") == 0)
 	{
 		old_pwd = get_old_pwd();
 		if (old_pwd == NULL)

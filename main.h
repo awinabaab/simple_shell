@@ -10,8 +10,30 @@
 #include <string.h>
 #include <errno.h>
 #include <ctype.h>
+#include <limits.h>
+#include <stdbool.h>
 
+
+
+/**
+ * @struct MyFILE
+ *
+ * @brief Custom file stream structure with end-of-file tracking.
+ *
+ * @member file Pointer to the actual file stream (FILE *).
+ * @member eof Boolean flag indicating end-of-file status.
+ */
+typedef struct
+{
+	FILE *file;
+	bool eof;
+} MyFILE;
+
+
+/* Pre-defined variable */
 extern char **environ;
+
+/* Shell features implementation functions */
 int _getline(char **lineptr, size_t *n, FILE *stream);
 char *getinput(void);
 char **inputstr_tok(char *input, const char *delim);
@@ -21,5 +43,20 @@ char *_getenv(const char *name);
 char *find_cmd_in_path(char *cmd);
 void change_dir(const char *dir);
 char **split_cmds(char *input);
+
+
+/* Helper functions 1 */
+int _strlen( const char *s);
+char *_strcat(char *dest, char *src);
+int _strcmp(const char *s1, const char *s2);
+char *_strcpy(char *dest, const char *src);
+char *_strdup(const char *s);
+
+
+/* Helper functions 2 */
+int _isdigit(int c);
+int _atoi(char *s);
+int _feof(MyFILE *stream);
+int _putchar(char c);
 
 #endif /* MAIN_H */

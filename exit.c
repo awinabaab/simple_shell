@@ -12,14 +12,13 @@ int is_num(char *str);
 int exit_shell(char **args)
 {
 	int status = 0;
-	char *endptr;
 
-	if (strcmp(args[0], "exit") == 0)
+	if (_strcmp(args[0], "exit") == 0)
 	{
 		if (args[1] == NULL)
 			status = 0;
-		else if (is_num(args[1]) == 1 && (strtol(args[1], &endptr, 10)) >= 0)
-			status = strtol(args[1], &endptr, 10);
+		else if (is_num(args[1]) == 1 && (_atoi(args[1])) >= 0)
+			status = _atoi(args[1]);
 		else
 			status = -1;
 	}
@@ -41,7 +40,7 @@ int is_num(char *str)
 
 	while (*str)
 	{
-		if (!isdigit((unsigned char)*str))
+		if (!_isdigit((unsigned char)*str))
 			return (0);
 		str++;
 	}

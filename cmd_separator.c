@@ -18,11 +18,11 @@ char **split_cmds(char *input)
 	if (input == NULL)
 		return (NULL);
 
-	input_copy = strdup(input);
+	input_copy = _strdup(input);
 	if (input_copy == NULL)
 		return (NULL);
 
-	arr_of_cmds = malloc(sizeof(char *) * (strlen(input) / 2 + 1));
+	arr_of_cmds = malloc(sizeof(char *) * (_strlen(input) / 2 + 1));
 	if (arr_of_cmds == NULL)
 	{
 		free(input_copy);
@@ -32,7 +32,7 @@ char **split_cmds(char *input)
 	token = strtok(input_copy, ";");
 	while (token != NULL)
 	{
-		arr_of_cmds[cmd_count] = strdup(token);
+		arr_of_cmds[cmd_count] = _strdup(token);
 		if (arr_of_cmds[cmd_count] == NULL)
 		{
 			for (j = 0; j < cmd_count; j++)

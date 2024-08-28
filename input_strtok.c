@@ -11,7 +11,7 @@ char **prepare_token_array(char *input, const char *delim)
 {
 	int count = 0;
 	char **argv;
-	char *input_copy = strdup(input);
+	char *input_copy = _strdup(input);
 	char *token;
 
 	if (input_copy == NULL)
@@ -62,7 +62,7 @@ char **inputstr_tok(char *input, const char *delim)
 	token = strtok(input, delim);
 	while (token != NULL)
 	{
-		argv[i] = strdup(token);
+		argv[i] = _strdup(token);
 		if (argv[i] == NULL)
 		{
 			perror("strdup");

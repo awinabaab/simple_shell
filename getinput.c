@@ -17,14 +17,18 @@ char *getinput(void)
 	if (read == -1)
 	{
 		free(input);
-		if (isatty(STDIN_FILENO) && feof(stdin))
+		if (isatty(STDIN_FILENO) && _feof(STDIN_FILENO))
 		{
-			printf("\n");
+			_putchar('\n');
 			exit(0);
+		} else if (input[0] == '\0' && input[1] == '\0')
+		{
+			exit(1);
+
 		}
 		else
 		{
-			/*perror("getline");*/
+			perror("getline");
 			exit(1);
 		}
 	}
