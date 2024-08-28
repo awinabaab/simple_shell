@@ -16,14 +16,12 @@
 
 
 /**
- * @struct MyFILE
+ * struct MyFILE - File strcuture for end of file tracking
  *
- * @brief Custom file stream structure with end-of-file tracking.
- *
- * @member file Pointer to the actual file stream (FILE *).
- * @member eof Boolean flag indicating end-of-file status.
+ * @file: Pointer to the actual file stream (FILE *).
+ * @eof: Boolean flag indicating end-of-file status.
  */
-typedef struct
+typedef struct MyFILE
 {
 	FILE *file;
 	bool eof;
@@ -46,7 +44,7 @@ char **split_cmds(char *input);
 
 
 /* Helper functions 1 */
-int _strlen( const char *s);
+int _strlen(const char *s);
 char *_strcat(char *dest, char *src);
 int _strcmp(const char *s1, const char *s2);
 char *_strcpy(char *dest, const char *src);
