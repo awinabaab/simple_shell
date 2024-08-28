@@ -29,6 +29,8 @@ int main(int ac, char **av, char **env)
 				break;
 			continue;
 		}
+		if (_strlen(input) == 1 && input[0] == '\n')
+		   continue;	
 		strarrs = split_cmds(input);
 		if (strarrs == NULL)
 		{
