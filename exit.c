@@ -40,7 +40,7 @@ int is_num(char *str)
 
 	while (*str)
 	{
-		if (!_isdigit((unsigned char)*str))
+		if (!isdigit((unsigned char)*str))
 			return (0);
 		str++;
 	}

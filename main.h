@@ -52,7 +52,7 @@ char *_strdup(const char *s);
 
 
 /* Helper functions 2 */
-int _isdigit(int c);
+int _isdigit(unsigned char c);
 int _atoi(char *s);
 int _feof(MyFILE *stream);
 int _putchar(char c);

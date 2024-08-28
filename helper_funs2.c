@@ -5,20 +5,18 @@
 /**
  * _isdigit - Checks through digits
  *
- * @c: An integer as parameter
+ * @c: An character as parameter
  *
  * Return: 1 if it's a digit, else returns 0
  */
-int _isdigit(int c)
+int _isdigit(unsigned char c)
 {
-	if (c >= 0 && c < 10)
+	if (c >= 48 && c < 58)
 	{
 		return (1);
 	}
-	else
-	{
-		return (0);
-	}
+
+	return (0);
 }
 
 
