@@ -12,7 +12,7 @@ int main(int ac, char **av, char **env)
 	char **strarr = NULL, **strarrs = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n", *prompt = "($) ";
-	int pcount = 1, i, interactive_mode = isatty(STDIN_FILENO);
+	int pcount = 1, i, interactive_mode = isatty(STDIN_FILENO), j;
 	(void)ac;
 
 	while (1)
@@ -20,7 +20,7 @@ int main(int ac, char **av, char **env)
 		if (interactive_mode)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		input = getinput();
-		if (_strlen(input) == 1 && input[0] == '\n')
+		if ((_strlen(input) == 1 && input[0] == '\n') || input == NULL)
 			continue;
 		strarrs = split_cmds(input);
 		if (strarrs == NULL)
@@ -34,7 +34,7 @@ int main(int ac, char **av, char **env)
 			strarr = inputstr_tok(strarrs[i++], delim);
 			if (strarr != NULL)
 			{
-				execution(strarr[0], strarr, env, av[0], pcount);
+				j = execution(strarr[0], strarr, env, av[0], pcount);
 				free(strarr);
 			}
 		}
@@ -44,5 +44,5 @@ int main(int ac, char **av, char **env)
 	}
 	free(input);
 	free(strarrs);
-	return (0);
+	return (j);
 }
