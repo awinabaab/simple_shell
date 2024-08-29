@@ -27,30 +27,31 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 		{
 			printf("%s: %d: %s: Illegal number: %s\n",
 					flname, pcount, argv, args[1]);
-			return (1);
+			return (2);
 		}
 	} else if (_strcmp(argv, "cd") == 0)
 	{
 		change_dir(args[1]);
-		return (1);
+		return (2);
 	} else if (stat(cmd, &st) == -1)
 	{
 		printf("%s: %d: %s: not found\n", flname, pcount, argv);
-		return (1);
+		perror("stat");
+		return (2);
 	}
 	pid = fork();
 	if (pid < 0)
 	{
 		perror("fork");
-		return (1);
+		return (2);
 	} else if (pid == 0)
 	{
 		if (execve(cmd, args, env) == -1)
-			return (1);
+			return (2);
 	} else if (wait(&status) == -1)
 	{
 		perror("wait");
-		return (1);
+		return (2);
 	}
 	return (0);
 }
