@@ -63,23 +63,6 @@ int _atoi(char *s)
 }
 
 
-/**
- * _feof - Checks if the end-of-file flag is set for a given fd
- *
- * @stream: File descriptor to check EOF status
- *
- * Return: true if EOF indicator is set, false otherwise
- */
-int _feof(MyFILE *stream)
-{
-	if (stream == NULL || stream->file == NULL)
-	{
-		return (-1);
-	}
-	return (stream->eof ? 1 : 0);
-}
-
-
 
 /**
  * _putchar - writes the character c to stdout

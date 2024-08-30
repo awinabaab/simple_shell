@@ -15,20 +15,8 @@
 
 
 
-/**
- * struct MyFILE - File strcuture for end of file tracking
- *
- * @file: Pointer to the actual file stream (FILE *).
- * @eof: Boolean flag indicating end-of-file status.
- */
-typedef struct MyFILE
-{
-	FILE *file;
-	bool eof;
-} MyFILE;
 
-
-/* Pre-defined variable */
+/* Pre-defined global variable */
 extern char **environ;
 
 /* Shell features implementation functions */
@@ -54,7 +42,6 @@ char *_strdup(const char *s);
 /* Helper functions 2 */
 int _isdigit(unsigned char c);
 int _atoi(char *s);
-int _feof(MyFILE *stream);
 int _putchar(char c);
 
 #endif /* MAIN_H */

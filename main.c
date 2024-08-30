@@ -1,5 +1,23 @@
 #include "main.h"
 
+
+
+/**
+ * prompt - prints the prompt on the stdout to take in input
+ *
+ * Return: Nothing
+ */
+void prompt(void)
+{
+	int interactive_mode = isatty(STDIN_FILENO);
+	char *prompt = "($) ";
+
+	if (interactive_mode == 1)
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
+}
+
+
+
 /**
  * main - Entry point for program execution
  * @ac: argument count
@@ -11,17 +29,19 @@ int main(int ac, char **av, char **env)
 {
 	char **strarr = NULL, **strarrs = NULL;
 	char *input = NULL;
-	const char *delim = " \t\n", *prompt = "($) ";
-	int pcount = 1, i, interactive_mode = isatty(STDIN_FILENO), j;
+	const char *delim = " \t\n";
+	int pcount = 1, i, j;
 	(void)ac;
 
 	while (1)
 	{
-		if (interactive_mode)
-			write(STDOUT_FILENO, prompt, _strlen(prompt));
+		prompt();
 		input = getinput();
 		if ((_strlen(input) == 1 && input[0] == '\n') || input == NULL)
+		{
+			free(input);
 			continue;
+		}
 		strarrs = split_cmds(input);
 		if (strarrs == NULL)
 		{

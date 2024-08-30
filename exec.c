@@ -36,7 +36,6 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 	} else if (stat(cmd, &st) == -1)
 	{
 		printf("%s: %d: %s: not found\n", flname, pcount, argv);
-		perror("stat");
 		return (2);
 	}
 	pid = fork();
