@@ -12,30 +12,23 @@
  * Return: 0 Always success
  */
 
-int execution(char *argv, char **args, char **env, char *flname, int pcount)
+int execution(char **args, char *flname, int pcount)
 {
 	pid_t pid;
 	struct stat st;
-	int exit_stat = exit_shell(args), status;
-	char *cmd = find_cmd_in_path(argv);
+	int status;/*exit_stat = exit_shell(args);*/
+	/*char *cmd = find_cmd_in_path(argv);*/
 
-	if (_strcmp(args[0], "exit") == 0)
+	if (args == NULL)
+	       return (2);	
+	if (strcmp(args[0], "exit") == 0)
 	{
-		if (exit_stat >= 0)
-			exit(exit_stat);
-		else
-		{
-			printf("%s: %d: %s: Illegal number: %s\n",
-					flname, pcount, argv, args[1]);
-			return (2);
-		}
-	} else if (_strcmp(argv, "cd") == 0)
+		free(args);
+		exit(0);
+	}
+	else if (stat(args[0], &st) == -1)
 	{
-		change_dir(args[1]);
-		return (2);
-	} else if (stat(cmd, &st) == -1)
-	{
-		printf("%s: %d: %s: not found\n", flname, pcount, argv);
+		printf("%s: %d: %s: not found\n", flname, pcount, args[0]);
 		return (2);
 	}
 	pid = fork();
@@ -45,12 +38,16 @@ int execution(char *argv, char **args, char **env, char *flname, int pcount)
 		return (2);
 	} else if (pid == 0)
 	{
-		if (execve(cmd, args, env) == -1)
-			return (2);
-	} else if (wait(&status) == -1)
+		if (execve(args[0], args, environ) == -1)
+			exit(2);
+	}
+	else
 	{
-		perror("wait");
-		return (2);
+		if (wait(&status) == -1)
+		{
+			perror("wait");
+			return (2);
+		}
 	}
 	return (0);
 }

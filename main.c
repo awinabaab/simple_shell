@@ -25,12 +25,12 @@ void prompt(void)
  * @env: array of environment argument string
  * Return: 0
  */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
-	char **strarr = NULL, **strarrs = NULL;
+	char **strarr = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n";
-	int pcount = 1, i, j;
+	int pcount = 1, j;
 	(void)ac;
 
 	while (1)
@@ -42,27 +42,19 @@ int main(int ac, char **av, char **env)
 			free(input);
 			continue;
 		}
-		strarrs = split_cmds(input);
-		if (strarrs == NULL)
+		strarr = inputstr_tok(input, delim);
+		if (strarr == NULL)
 		{
 			free(input);
+			free(strarr);
 			continue;
 		}
-		i = 0;
-		while (strarrs[i] != NULL)
+		if (strarr != NULL)
 		{
-			strarr = inputstr_tok(strarrs[i++], delim);
-			if (strarr != NULL)
-			{
-				j = execution(strarr[0], strarr, env, av[0], pcount);
-				free(strarr);
-			}
+			j = execution(strarr, av[0], pcount);
 		}
-		free(input);
-		free(strarrs);
+		free(strarr);
 		pcount++;
 	}
-	free(input);
-	free(strarrs);
 	return (j);
 }
