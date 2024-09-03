@@ -29,7 +29,7 @@ int main(int ac, char **av)
 	char **strarr = NULL;
 	char *input = NULL;
 	const char *delim = " \t\n";
-	int pcount = 1, j;
+	int pcount = 1, j, i;
 	(void)ac;
 
 	while (1)
@@ -52,6 +52,9 @@ int main(int ac, char **av)
 		{
 			j = execution(strarr, av[0], pcount);
 		}
+		i = 0;
+		while (strarr[i] != NULL)
+			free(strarr[i++]);
 		free(strarr);
 		pcount++;
 	}
