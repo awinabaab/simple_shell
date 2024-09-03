@@ -14,23 +14,15 @@ char *getinput(void)
 	ssize_t read;
 
 	read = getline(&input, &input_len, stdin);
-	if (read > 0)
-	{
-		return (input);
 
-	}
 	if (read == -1)
 	{
 		free(input);
-		if (isatty(STDIN_FILENO) && EOF == -1)
+		if (isatty(STDIN_FILENO))
 		{
 			_putchar('\n');
-			exit(0);
 		}
-		else
-		{
-			exit(1);
-		}
+		exit(0);
 	}
 
 	return (input);
