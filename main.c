@@ -22,7 +22,6 @@ void prompt(void)
  * main - Entry point for program execution
  * @ac: argument count
  * @av: array of arguments
- * @env: array of environment argument string
  * Return: 0
  */
 int main(int ac, char **av)

@@ -80,8 +80,6 @@ char **inputstr_tok(char *input, const char *delim)
 	}
 	argv[i] = NULL;
 	i = 0;
-	while (argv[i] != NULL)
-		free(argv[i++]);
 
 	free(input);
 	return (argv);
