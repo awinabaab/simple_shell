@@ -16,7 +16,6 @@ char *getinput(void)
 	read = getline(&input, &input_len, stdin);
 	if (read > 0)
 	{
-		clearerr(stdin);
 		return (input);
 
 	}
