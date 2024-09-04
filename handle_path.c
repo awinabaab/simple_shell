@@ -28,12 +28,14 @@ char *find_cmd_in_path(char *cmd)
 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, cmd);
 		if (access(full_path, X_OK) == 0)
 		{
+			free(path);
 			free(path_copy);
 			return (full_path);
 		}
 		dir = strtok(NULL, ":");
 	}
 
+	free(path);
 	free(path_copy);
 	return (NULL);
 }
