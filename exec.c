@@ -13,10 +13,14 @@
 int execution(char **args, char *flname, int pcount)
 {
 	pid_t pid;
-	struct stat st;
+	struct stat *st;
 	int status, i;
+	int exit_stat = exit_shell(args);
 	char *cmd = find_cmd_in_path(args[0]);
 
+	st = malloc(sizeof(struct stat));
+	if (!st)
+		return (0);
 	if (args == NULL)
 		return (0);
 	if (strcmp(args[0], "exit") == 0)
@@ -25,11 +29,18 @@ int execution(char **args, char *flname, int pcount)
 		while (args[i] != NULL)
 			free(args[i++]);
 		free(args);
+		if (exit_stat >= 0)
+			exit(exit_stat);
+	
+		else
+			printf("%s: %d: %s: Illegal number: %s\n",
+					flname, pcount, args[0], args[1]);
 		exit(0);
 	}
-	else if (stat(cmd, &st) == -1)
+	else if (stat(cmd, st) == -1)
 	{
 		printf("%s: %d: %s: not found\n", flname, pcount, args[0]);
+		free(st);
 		return (0);
 	}
 	pid = fork();
@@ -40,7 +51,7 @@ int execution(char **args, char *flname, int pcount)
 	} else if (pid == 0)
 	{
 		if (execve(cmd, args, environ) == -1)
-			return (0);
+				return (0);
 	}
 	else
 	{
@@ -50,5 +61,6 @@ int execution(char **args, char *flname, int pcount)
 			return (0);
 		}
 	}
+	free(st);
 	return (0);
 }
