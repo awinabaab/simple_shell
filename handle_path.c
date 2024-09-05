@@ -29,6 +29,12 @@ char *find_cmd_in_path(char *cmd)
 			free(path_copy);
 			return (cmd);
 		}
+		if (cmd[0] == '.' && cmd[1] == '/')
+		{
+			free(path);
+			free(path_copy);
+			return (cmd + 2);
+		}
 		snprintf(full_path, sizeof(full_path), "%s/%s", dir, cmd);
 		if (access(full_path, X_OK) == 0)
 		{
