@@ -26,6 +26,11 @@ char **prepare_token_array(char *input, const char *delim)
 		count++;
 		token = strtok(NULL, delim);
 	}
+	if (count == 0)
+	{
+		free(input_copy);
+		return (NULL);
+	}
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (argv == NULL)
 	{
@@ -54,10 +59,7 @@ char **inputstr_tok(char *input, const char *delim)
 
 	argv = prepare_token_array(input, delim);
 	if (argv == NULL)
-	{
-		free(input);
 		return (NULL);
-	}
 
 	token = strtok(input, delim);
 	while (token != NULL)
@@ -74,12 +76,12 @@ char **inputstr_tok(char *input, const char *delim)
 			free(argv);
 			return (NULL);
 		}
-		/*free(argv[i]);*/
 		i++;
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	i = 0;
+	if (argv == NULL)
+		return (NULL);
 
 	free(input);
 	return (argv);

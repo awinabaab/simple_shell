@@ -45,7 +45,6 @@ int main(int ac, char **av)
 		if (strarr == NULL)
 		{
 			free(input);
-			free(strarr);
 			continue;
 		}
 		if (strarr != NULL)
