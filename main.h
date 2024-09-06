@@ -47,5 +47,6 @@ int _putchar(char c);
 /* Free functions */
 void free_args(char **args);
 void exit_st(int exit_stat, char **args, char *flname, int pcount);
+void free_path(char *path, char *path_copy);
 
 #endif /* MAIN_H */
