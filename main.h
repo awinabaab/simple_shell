@@ -26,7 +26,7 @@ char **inputstr_tok(char *input, const char *delim);
 int execution(char **args, char *flname, int pcount);
 int exit_shell(char **argv);
 char *_getenv(const char *name);
-char *find_cmd_in_path(char *cmd);
+char *find_cmd_in_path(char *cmd, char **args, char *flname, int pcount);
 void change_dir(const char *dir);
 char **split_cmds(char *input);
 
@@ -44,9 +44,12 @@ int _isdigit(unsigned char c);
 int _atoi(char *s);
 int _putchar(char c);
 
-/* Free functions */
+/* Sub-files helper functions */
 void free_args(char **args);
 void exit_st(int exit_stat, char **args, char *flname, int pcount);
 void free_path(char *path, char *path_copy);
+int validate_cmd(char *cmd, char *dir, char *full_path, size_t size);
+void error_msg(char **args, char *path, char *copy, char *flname, int pcount);
+int non_interactive_exit(char **args, char *path, char *path_copy);
 
 #endif /* MAIN_H */

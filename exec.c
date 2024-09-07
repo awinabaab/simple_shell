@@ -15,7 +15,7 @@ int execution(char **args, char *flname, int pcount)
 	pid_t pid;
 	struct stat *st;
 	int status, exit_stat = exit_shell(args);
-	char *cmd = find_cmd_in_path(args[0]);
+	char *cmd = find_cmd_in_path(args[0], args, flname, pcount);
 
 	st = malloc(sizeof(struct stat));
 	if (!st || !args)

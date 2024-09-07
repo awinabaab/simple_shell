@@ -47,3 +47,26 @@ int is_num(char *str)
 
 	return (1);
 }
+
+
+/**
+ * non_interactive_exit - Controls non-interactive mode exit status
+ * @args: Array of command and arguments
+ *
+ * Return: 2 if true, otherwise 0
+ */
+int non_interactive_exit(char **args, char *path, char *path_copy)
+{
+	int i = 0;
+
+	if ((!isatty(STDIN_FILENO)) && (_strcmp(args[0], "exit") == 0))
+	{
+		while (args[i] != NULL)
+			free(args[i++]);
+		free(args);
+		free_path(path, path_copy);
+		return (2);
+	}
+
+	return (0);
+}
